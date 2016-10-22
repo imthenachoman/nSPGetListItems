@@ -8,11 +8,10 @@ https://github.com/imthenachoman/nSPGetListItems
 
  1. [Overview](#overview)
  2. [Reference](#reference)
-	 1. [onListLoadComplete](#onlistloadcomplete)
-	 2. [onViewLoadComplete](#onviewloadcomplete)
-	 3. [onListItemLoadComplete](#onlistitemloadcomplete)
-	 4. [onError](#onerror)
- 3. [Features](#features)
+	 1. function [onListLoadComplete](#onlistloadcomplete)
+	 2. function [onViewLoadComplete](#onviewloadcomplete)
+	 3. function [onListItemLoadComplete](#onlistitemloadcomplete)
+	 4. function [onError](#onerror)
  4. [Examples](#examples)
  
 ## Overview
@@ -40,11 +39,37 @@ Key | Required | Type | Default Value | Description | Example
 
 ### onListLoadComplete
 
-a
+The first thing `nSPGetListItems` does is pull relevant data about the list based on the options you provided. If you provide a `onListLoadComplete` function it will be called with an object with the following properties:
+
+    nSPGetListItems({
+        "onListLoadComplete" : function(listData)
+    });
+
+listData:
+
+ - `listName`
+ - `listGUID`
+ - `viewName`
+ - `viewGUID`
+ - `listPermissions` - boolean values to indicate if the current user has `add`, `edit`, `delete`, and `view` permissions on the list
+ - `listForms` - URLs to the `new`, `edit`, and `disp` forms for the list
+ - `contentTypes` - an array of all the content types available in the list with the following properties:
+   - `name`
+   - `description`
+   - `forms` - URLs to the `new`, `edit`, and `disp` forms for the content type (may be empty strings)
 
 ### onViewLoadComplete
 
-a
+Next `nSPGetListItems` will get details about the view you requested or the default view for the list. If you provide a `onViewLoadComplete` function it will be called with three paramaters.
+
+    nSPGetListItems({
+        "onViewLoadComplete" : function(viewFields, viewXML, camlQuery)
+    });
+
+
+ - `viewFields` - an array of objects (definition below) providing details about each column/field, in order, from the view
+ - `viewXML` - the XML of the view
+ - `camlQuery` - an `SP.CamlQuery` object if you want to 
 
 ### onListItemLoadComplete
 
@@ -52,3 +77,8 @@ a
 
 ### onError
 
+a
+
+## Examples
+
+a
