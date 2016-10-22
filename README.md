@@ -8,6 +8,10 @@ https://github.com/imthenachoman/nSPGetListItems
 
  1. [Overview](#overview)
  2. [Reference](#reference)
+	 1. [onListLoadComplete](#onlistloadcomplete)
+	 2. [onViewLoadComplete](#onviewloadcomplete)
+	 3. [onListItemLoadComplete](#onlistitemloadcomplete)
+	 4. [onError](#onerror)
  3. [Features](#features)
  4. [Examples](#examples)
  
@@ -28,10 +32,10 @@ Key | Required | Type | Default Value | Description | Example
 `listName` or `listGUID` | **yes** | string | | the name or GUID of the list | <ul><li>`"Announcements"`</li><li>`"{1c7c0498-6f1c-4ec1-8ee6-dd9959f3c52d}"`</li></ul>
 `viewName` or `viewGUID` | | string | the list's default view | the name or GUID of the view you want to use to determine the fields and items to pull | <ul><li>`"All Documents"`</li><li>`"{dce68293-70e5-4c47-acda-72e6236b8f65}"`</li></ul>
 `webURL` | | string | the current web | the web URL you want to pull from | <ul><li>`"/someSite"`</li><li>`"/someSite/subSite"`</li></ul>
-`onListLoadComplete` | | function | n/a | the function to call when the list details are loaded | see [onListLoadComplete](#onListLoadComplete) below
-`onViewLoadComplete` | | function | n/a | the function to call when the view details are loaded | see [onViewLoadComplete](#onViewLoadComplete) below
-`onListItemLoadComplete` | | function | n/a | the function to call when the list items are loaded | see [onListItemLoadComplete](#onListItemLoadComplete) below
-`onError` | | function | n/a | the function to call if there is an error at any stage | see [onError](#onError) below
+`onListLoadComplete` | | function | n/a | the function to call when the list details are loaded | see [onListLoadComplete](#onlistloadcomplete) below
+`onViewLoadComplete` | | function | n/a | the function to call when the view details are loaded | see [onViewLoadComplete](#onviewloadcomplete) below
+`onListItemLoadComplete` | | function | n/a | the function to call when the list items are loaded | see [onListItemLoadComplete](#onlistitemloadcomplete) below
+`onError` | | function | n/a | the function to call if there is an error at any stage | see [onError](#onerror) below
 `interval` | | number | n/a | 
 
 ### onListLoadComplete
