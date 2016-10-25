@@ -80,11 +80,11 @@ Next `nSPGetListItems` will get details about the view you requested or the defa
      - `listPermissions` - same as [onListLoadComplete](#onlistloadcomplete)
      - `listForms` - same as [onListLoadComplete](#onlistloadcomplete)
      - `sourceField` - the details of the lookup field
-       - `typeID` - same as above
-       - `typeName` - same as above
-       - `internalName` - same as above
-       - `displayName` - same as above
-       - `staticName` - same as above
+        - `typeID` - same as above
+        - `typeName` - same as above
+        - `internalName` - same as above
+        - `displayName` - same as above
+        - `staticName` - same as above
  - `viewXML` - the XML of the view
  - `camlQuery` - an `SP.CamlQuery` object if you want to do something custom
 
