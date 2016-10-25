@@ -60,7 +60,7 @@ listData:
 
 ### onViewLoadComplete
 
-Next `nSPGetListItems` will get details about the view you requested or the default view for the list. If you provide a `onViewLoadComplete` function it will be called with three parameters and expects an `SP.CamlQuery` return.
+Next `nSPGetListItems` will get details about the view you requested or the default view for the list. If you provide a `onViewLoadComplete` function it will be called with three parameters and expects an `SP.CamlQuery` return object.
 
     nSPGetListItems({
         "onViewLoadComplete" : function(viewFields, viewXML, camlQueru)
@@ -68,7 +68,6 @@ Next `nSPGetListItems` will get details about the view you requested or the defa
 		   return camlQuery;
         }
     });
-
 
  - `viewFields` - an array of objects providing details about each column/field, in order, from the view:
    - `typeID` - SharePoint field type number (see https://msdn.microsoft.com/en-us/library/office/jj245640.aspx)
@@ -87,6 +86,18 @@ Next `nSPGetListItems` will get details about the view you requested or the defa
         - `staticName` - same as above
  - `viewXML` - the XML of the view
  - `camlQuery` - an `SP.CamlQuery` object if you want to do something custom
+
+If you want to do something custom with the query then you can use the `camlQuery` paramater as the base and return an `SP.CamlQuery` object.
+
+For example:
+
+    nSPGetListItems({
+        "onViewLoadComplete" : function(viewFields, viewXML, camlQuery)
+        {
+	    camlQuery.RecordCount = 100;
+	    return camlQuery;
+        }
+    });
 
 ### onListItemLoadComplete
 
