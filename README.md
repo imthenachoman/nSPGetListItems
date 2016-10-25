@@ -16,7 +16,7 @@ https://github.com/imthenachoman/nSPGetListItems
  
 ## Overview
 
-When writing code for JavaScript the majority of the time I am getting items from a list or document library. I got tired of having to write the same code over and over again so I wrote the helper library/utility `nSPGetListItems`.
+When developing something for SharePoint the majority of the time I am getting items from a list or document library using JavaScript. I got tired of having to write the same code over and over again so I wrote the helper library/utility `nSPGetListItems`.
 
 The idea is simple: call `nSPGetListItems` with your [options](#reference)  (a list or document library name at minimum), and get back details about the list, the view, and, of course, the list items.
 
@@ -60,16 +60,33 @@ listData:
 
 ### onViewLoadComplete
 
-Next `nSPGetListItems` will get details about the view you requested or the default view for the list. If you provide a `onViewLoadComplete` function it will be called with three paramaters.
+Next `nSPGetListItems` will get details about the view you requested or the default view for the list. If you provide a `onViewLoadComplete` function it will be called with three parameters and expects an `SP.CamlQuery` return.
 
     nSPGetListItems({
-        "onViewLoadComplete" : function(viewFields, viewXML, camlQuery)
+        "onViewLoadComplete" : function(viewFields, viewXML, camlQueru)
+        {
+		   return camlQuery;
+        }
     });
 
 
- - `viewFields` - an array of objects (definition below) providing details about each column/field, in order, from the view
+ - `viewFields` - an array of objects providing details about each column/field, in order, from the view:
+   - `typeID` - SharePoint field type number (see https://msdn.microsoft.com/en-us/library/office/jj245640.aspx)
+   - `typeName` - SharePoint field type name (see https://msdn.microsoft.com/en-us/library/office/jj245640.aspx)
+   - `internalName` - the internal name of the field
+   - `displayName` - the display name of the field
+   - `staticName` - the static name of the field
+   - `sourceList` - if `typeName` is `Lookup` then this will have details about the lookup list and field
+     - `listPermissions` - same as [onListLoadComplete](#onlistloadcomplete)
+     - `listForms` - same as [onListLoadComplete](#onlistloadcomplete)
+     - `sourceField` - the details of the lookup field
+       - `typeID` - same as above
+       - `typeName` - same as above
+       - `internalName` - same as above
+       - `displayName` - same as above
+       - `staticName` - same as above
  - `viewXML` - the XML of the view
- - `camlQuery` - an `SP.CamlQuery` object if you want to 
+ - `camlQuery` - an `SP.CamlQuery` object if you want to do something custom
 
 ### onListItemLoadComplete
 
