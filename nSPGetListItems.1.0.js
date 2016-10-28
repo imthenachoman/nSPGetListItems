@@ -205,7 +205,8 @@ var nSPGetListItems = nSPGetListItems || (function()
             "onViewLoadComplete"     : options.onViewLoadComplete,
             "onListItemLoadComplete" : options.onListItemLoadComplete,
             "onError"                : options.onError,
-            "interval"               : options.interval || 0
+            "interval"               : options.interval || 0,
+            "myData"                 : options.myData
         };
         
         // add it to the tracker
@@ -262,7 +263,7 @@ var nSPGetListItems = nSPGetListItems || (function()
         var listData = this;
         
         // if the user has an error function then run it
-        if(listData.onError) listData.onError(listData.stage, args.get_message());
+        if(listData.onError) listData.onError(listData.stage, args.get_message(), listData.myData);
     };
     
     // run when a list is loaded
@@ -311,7 +312,8 @@ var nSPGetListItems = nSPGetListItems || (function()
                     "edit"     : listData.list.get_defaultEditFormUrl(),
                     "disp"     : listData.list.get_defaultDisplayFormUrl()
                 },
-                "contentTypes" : listContentTypes
+                "contentTypes" : listContentTypes,
+                "myData"       : listData.myData
             });
         }
         
@@ -455,7 +457,7 @@ var nSPGetListItems = nSPGetListItems || (function()
                 }
                 
                 // load the data
-                if(listData.onViewLoadComplete) camlQuery = listData.onViewLoadComplete(theirViewFields, viewXML, camlQuery) || camlQuery;
+                if(listData.onViewLoadComplete) camlQuery = listData.onViewLoadComplete(theirViewFields, viewXML, camlQuery, listData.myData) || camlQuery;
                 listData.camlQuery = camlQuery;
                 listData.listItems = listData.list.getItems(listData.camlQuery);
                 
@@ -466,7 +468,7 @@ var nSPGetListItems = nSPGetListItems || (function()
         // otherwise just load the data
         else
         {
-            if(listData.onViewLoadComplete) camlQuery = listData.onViewLoadComplete(theirViewFields, viewXML, camlQuery) || camlQuery;
+            if(listData.onViewLoadComplete) camlQuery = listData.onViewLoadComplete(theirViewFields, viewXML, camlQuery, listData.myData) || camlQuery;
             listData.camlQuery = camlQuery;
             listData.listItems = listData.list.getItems(listData.camlQuery);
                         
@@ -572,7 +574,7 @@ var nSPGetListItems = nSPGetListItems || (function()
         }
         
         // if the user wants the data then give it to them
-        if(listData.onListItemLoadComplete) listData.onListItemLoadComplete(rows);
+        if(listData.onListItemLoadComplete) listData.onListItemLoadComplete(rows, listData.myData);
         
         // if we want to set an interval then set it
         if(listData.interval) listData.timerID = setTimeout(function()
