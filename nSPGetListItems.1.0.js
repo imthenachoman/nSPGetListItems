@@ -263,7 +263,7 @@ var nSPGetListItems = nSPGetListItems || (function()
         var listData = this;
         
         // if the user has an error function then run it
-        if(listData.onError) listData.onError(listData.stage, args.get_message(), listData.myData);
+        if(listData.onError) listData.onError(listData.stage, args.get_errorTypeName(), args.get_message(), listData.myData);
     };
     
     // run when a list is loaded
