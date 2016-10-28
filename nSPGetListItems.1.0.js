@@ -312,9 +312,8 @@ var nSPGetListItems = nSPGetListItems || (function()
                     "edit"     : listData.list.get_defaultEditFormUrl(),
                     "disp"     : listData.list.get_defaultDisplayFormUrl()
                 },
-                "contentTypes" : listContentTypes,
-                "myData"       : listData.myData
-            });
+                "contentTypes" : listContentTypes
+            }, listData.myData);
         }
         
         // get all the fields in the list and save them so we can reference them later
