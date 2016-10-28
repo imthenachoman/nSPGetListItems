@@ -1,3 +1,16 @@
+/* nSPGetListItems
+ * ----------------------------------------------------------------------------
+ * a JavaScript convenience library to get items from SharePoint lists using CSOM/JSOM
+ *
+ * version : 1.0
+ * url     : https://github.com/imthenachoman/nSPGetListItems
+ * author  : Anchal Nigam
+ * e-mail  : imthenachoman@gmail.com
+ *
+ * Copyright (c) 2015 Anchal Nigam (imthenachoman@gmail.com)
+ * Licensed under the MIT license: http://opensource.org/licenses/MIT
+ * ----------------------------------------------------------------------------
+ */
 var nSPGetListItems = nSPGetListItems || (function()
 {
     // track the user's requests
