@@ -570,12 +570,12 @@ var nSPGetListItems = nSPGetListItems || (function()
                     "edit" : thisRowPermissions.has(SP.PermissionKind.editListItems),
                     "delete" : thisRowPermissions.has(SP.PermissionKind.deleteListItems)
                 },
-                "data" : row
+                "fields" : row
             });
         }
         
         // if the user wants the data then give it to them
-        if(listData.onListItemLoadComplete) listData.onListItemLoadComplete(rows, listData.myData);
+        if(listData.onListItemLoadComplete) listData.onListItemLoadComplete(rows, rows.length, listData.myData);
         
         // if we want to set an interval then set it
         if(listData.interval) listData.timerID = setTimeout(function()
