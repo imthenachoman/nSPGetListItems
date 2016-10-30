@@ -204,6 +204,7 @@ var nSPGetListItems = nSPGetListItems || (function()
             "onListLoadComplete"     : options.onListLoadComplete,
             "onViewLoadComplete"     : options.onViewLoadComplete,
             "onListItemLoadComplete" : options.onListItemLoadComplete,
+            "onStart"                : options.onStart,
             "onError"                : options.onError,
             "interval"               : options.interval || 0,
             "myData"                 : options.myData
@@ -588,6 +589,8 @@ var nSPGetListItems = nSPGetListItems || (function()
     {
         // get the list
         var listData = instanceTracker[trackerID];
+        
+        if(listData.onStart) listData.onStart(listData.myData);
         
         // clear any running timer
         clearTimeout(listData.timerID);
