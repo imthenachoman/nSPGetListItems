@@ -308,11 +308,12 @@ var nSPGetListItems = nSPGetListItems || (function()
                     "view"     : listPermissions.has(SP.PermissionKind.viewListItems),
                 },
                 "listForms"        : {
-                    "new"      : listData.list.get_defaultNewFormUrl(),
-                    "edit"     : listData.list.get_defaultEditFormUrl(),
-                    "disp"     : listData.list.get_defaultDisplayFormUrl()
+                    "newForm"      : listData.list.get_defaultNewFormUrl(),
+                    "editForm"     : listData.list.get_defaultEditFormUrl(),
+                    "dispForm"     : listData.list.get_defaultDisplayFormUrl()
                 },
-                "contentTypes" : listContentTypes
+                "contentTypes" : listContentTypes,
+                "defaultViewURL" : listData.list.get_defaultViewUrl()
             }, listData.myData);
         }
         
