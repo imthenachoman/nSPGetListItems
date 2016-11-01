@@ -246,8 +246,8 @@ var nSPGetListItems = nSPGetListItems || (function()
             listData.clientContext.load(listData.view, "ViewQuery");
             listData.clientContext.load(listData.viewFields);
             
-            // we're at the current stage
-            listData.stage = 1;
+            // we're at the current step
+            listData.step = "getting list and view details";
             
             // do it to it it
             // send this list data as the this context so we can reference it in the success/error functions
@@ -264,7 +264,7 @@ var nSPGetListItems = nSPGetListItems || (function()
         var listData = this;
         
         // if the user has an error function then run it
-        if(listData.onError) listData.onError(listData.stage, args.get_errorTypeName(), args.get_message(), listData.myData);
+        if(listData.onError) listData.onError(listData.step, args.get_errorTypeName(), args.get_message(), listData.myData);
     };
     
     // run when a list is loaded
@@ -408,7 +408,7 @@ var nSPGetListItems = nSPGetListItems || (function()
                 }
             }
             
-            listData.stage = 2;
+            listData.step = "loading list lookup fields";
             // make the call
             listData.clientContext.executeQueryAsync(Function.createDelegate(viewLookupFieldsToGet, function(sender, args)
             {
@@ -462,7 +462,7 @@ var nSPGetListItems = nSPGetListItems || (function()
                 listData.camlQuery = camlQuery;
                 listData.listItems = listData.list.getItems(listData.camlQuery);
                 
-                listData.stage = 3;
+                listData.step = "getting list items";
                 refresh(listData.ID);
             }), Function.createDelegate(listData, onError));
         }
@@ -473,7 +473,7 @@ var nSPGetListItems = nSPGetListItems || (function()
             listData.camlQuery = camlQuery;
             listData.listItems = listData.list.getItems(listData.camlQuery);
                         
-            listData.stage = 3;
+            listData.step = "getting list items";
             refresh(listData.ID);
         }
     };
